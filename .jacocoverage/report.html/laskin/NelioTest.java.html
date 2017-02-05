@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="fi"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../.resources/report.gif" type="image/gif"/><title>NelioTest.java</title><link rel="stylesheet" href="../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../.sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">JaCoCoverage analysis of project &quot;laskin&quot; (powered by JaCoCo from EclEmma)</a> &gt; <a href="index.source.html" class="el_package">laskin</a> &gt; <span class="el_source">NelioTest.java</span></div><h1>NelioTest.java</h1><pre class="source lang-java linenums">package laskin;
+
+import static org.junit.Assert.assertEquals;
+import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.junit.runners.Parameterized;
+import org.junit.runners.Parameterized.Parameters;
+
+import java.util.Arrays;
+import java.util.List;
+
+// Käyttää Parameterized ajuria
+// Testitapaukset ja odotetut tulokset Collection-oliossa
+@RunWith(Parameterized.class)
+public class NelioTest {
+
+<span class="nc" id="L17">    private static Laskin laskin = new Laskin();</span>
+    private int luku;
+    private int tulos;
+
+    @Parameters
+    public static List testiTapaukset() {
+<span class="nc" id="L23">        return Arrays.asList(new Object[][]{</span>
+<span class="nc" id="L24">                    {0, 0},</span>
+<span class="nc" id="L25">                    {1, 1},</span>
+<span class="nc" id="L26">                    {2, 4},</span>
+<span class="nc" id="L27">                    {4, 16},</span>
+<span class="nc" id="L28">                    {5, 25},</span>
+<span class="nc" id="L29">                    {6, 36},</span>
+<span class="nc" id="L30">                    {7, 48} // 7*7 = 49, ei 48</span>
+                });
+    }
+
+    // Konstruktori, jota JUnit kutsuu kullekin listan testitapaukselle.
+    // Parametrien kytkentä sijainnin / järjestyksen perusteella:
+    // ekana syötetty luku, toisena odotettu arvo
+<span class="nc" id="L37">    public NelioTest(int luku, int tulos) {</span>
+<span class="nc" id="L38">        this.luku = luku;</span>
+<span class="nc" id="L39">        this.tulos = tulos;</span>
+<span class="nc" id="L40">    }</span>
+
+    @Test
+    public void testNelio() {
+<span class="nc" id="L44">        String messu = luku + &quot; * &quot; + luku;</span>
+<span class="nc" id="L45">        laskin.nelio(luku);</span>
+<span class="nc" id="L46">        assertEquals(messu, tulos, laskin.annaTulos());</span>
+<span class="nc" id="L47">    }</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.6.201602180812</span></div></body></html>
